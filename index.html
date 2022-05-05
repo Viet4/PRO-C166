@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--AFRAME Scripts-->
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+        <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+
+        <!--Local Scripts-->
+        <script src="./js/arrow.js"></script>
+    </head>
+    <body>
+        <a-scene renderer="colorManagement: true;" embedded arjs>
+            <!--Assets-->
+            <a-assets>
+                <a-asset-item id="lightbulb" src="./assets/lightbulb.glb"></a-asset-item>
+                <a-asset-item id="light_switch" src="./assets/lightswitch.glb"></a-asset-item>
+                <a-asset-item id="battery" src="./assets/battery.glb"></a-asset-item>
+
+                <img id="arrow" src="./assets/arrow.png">
+            </a-assets>
+
+            <!--Marker-->
+            <a-marker-camera preset="hiro">
+                <a-entity rotation="-90 0 0">
+                <a-plane
+                    position="0 1.5 -4.5"
+                    rotation="0 0 0"
+                    width="8"
+                    height="5"
+                    color="#FFF"
+                ></a-plane>
+                <a-entity
+                    position="-2.5 2 -4"
+                    rotation="0 0 0"
+                    gltf-model="#lightbulb"
+                    scale=".1 .1 .1"
+                ></a-entity>
+                <a-entity
+                    position="2.5 1.5 -4"
+                    rotation="90 0 0"
+                    gltf-model="#light_switch"
+                    scale=".1 .1 .1"
+                ></a-entity>
+                <a-entity
+                    position=".75 0 -4"
+                    rotation="-90 90 0"
+                    gltf-model="#battery"
+                    scale=".1 .1 .1"
+                ></a-entity>
+
+                <a-image arrow="
+                    rotation: 0 0 180;
+                    from: 2.5 2.5 -4.25; 
+                    to: -2.5 2.5 -4.25;
+                "></a-image>
+                <a-image arrow="
+                    rotation: 0 0 90;
+                    from: 2.5 0 -4.25; 
+                    to: 2.5 2.5 -4.25;
+                "></a-image>
+                <a-image arrow="
+                    from: -2.5 0 -4.25; 
+                    to: 2.5 0 -4.25;
+                "></a-image>
+                <a-image arrow="
+                    rotation: 0 0 -90;
+                    from: -2.5 2.5 -4.25; 
+                    to: -2.5 0 -4.25;
+                "></a-image>
+                </a-entity>
+            </a-marker-camera>
+        </a-scene>
+    </body>
+</html>
